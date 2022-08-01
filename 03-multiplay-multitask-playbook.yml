@@ -1,0 +1,28 @@
+---
+- name: update web servers
+  hosts: web
+
+  tasks:
+  - name: Create Dir web
+    file:
+      path: /home/ec2-user/web
+      state: directory                  # specify state=directory default is file
+
+- name: update web servers
+  hosts: app
+
+  tasks:
+  - name: Create Hello1.txt
+    copy:
+      destination: /home/ec2-user/hello1.txt
+      content: "Hello my wonderfull students"
+
+
+- name: Update web servers
+  hosts: db
+
+  tasks:
+  - name: Download URL
+    get_url:
+      dest: /home/ec2-user
+      url: https://filesample.com/samples/document/txt/sample1.txt
